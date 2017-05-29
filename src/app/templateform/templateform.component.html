@@ -1,0 +1,26 @@
+<div *ngIf="submitted"><h2>Thanks for your submission</h2></div>
+
+<form (ngSubmit)="processForm()" *ngIf="!submitted" #form="ngForm">
+  {{form.valid}}
+  <div class="form-group" [ngClass]="{'has error': name.invalid && name.touched}">
+    <label>Name</label>
+    <input type="text" class="form-control" name="name" required
+           [(ngModel)]="user.name" #name="ngModel">
+    Valid: {{name.valid}}
+    Touched: {{name.touched}}
+  </div>
+
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text" class="form-control" name="username" required
+           [(ngModel)]="user.userName" #userName>
+
+    {{userName.className}}
+  </div>
+
+  <div class="form-group">
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </div>
+
+  {{diagnostic}}
+</form>
